@@ -51,6 +51,18 @@ class Scraper:
         self.driver.find_element_by_name("ACT_login").click()
         time.sleep(3)
         logging.info("Finished login")
+    
+    def _get_summary(self):
+        logging.info("Start getting summaries")
+        self.driver.find_element_by_xpath("//img[contains(@alt, '口座管理')]").click()
+        time.sleep(3)
+        self.driver.find_element_by_xpath("//area[contains(@alt, 'サマリー')]").click()
+        time.sleep(5)
+        html = self.driver.page_source
+        dst = os.path.join(self.csvdir, 'summary.html')
+        with open(dst) as f:
+            f.write(html)
+        logging.info("Finished getting shares")
 
     def _get_shares(self):
         logging.info("Start getting shares")
