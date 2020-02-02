@@ -1,7 +1,6 @@
 from datetime import date
 from typing import Optional
 from datetime import date
-import io
 
 class AssetSummary:
     def __init__(self, cash: int, shares: int, trust: int, created_at: date):
